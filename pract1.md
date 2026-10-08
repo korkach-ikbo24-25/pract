@@ -5,7 +5,10 @@
 ## Задача 1
 
 Вывести отсортированный в алфавитном порядке список имен пользователей в файле passwd (вам понадобится grep).
-## Ответ: grep '.*' /etc/passwd | cut -d: -f1 | sort
+## Ответ: 
+```
+grep '.*' /etc/passwd | cut -d: -f1 | sort
+```
 ---
 
 grep - ищет строки в файле по шаблону
@@ -26,7 +29,10 @@ cut - вырезает нужную часть из каждой строки
 139 hip
 138 manet
 ```
-## Ответ: grep -v '^#' /etc/protocols | awk '{print $2, $1}' | sort -rn | head -n 5
+## Ответ: 
+```
+grep -v '^#' /etc/protocols | awk '{print $2, $1}' | sort -rn | head -n 5
+```
 ---
 
 awk '{print $2, $1}'  меняет местами 2-й и 1-й столбцы, awk - построчный обработчик текста.
@@ -49,6 +55,7 @@ awk '{print $2, $1}'  меняет местами 2-й и 1-й столбцы, a
 
 ## Ответ:
 
+```
 #!/bin/bash
 
 text=$*
@@ -61,6 +68,8 @@ done
 echo "+${line}+"
 echo "| ${text} |"
 echo "+${line}+"
+```
+
 ---
 
 !/bin/bash - shebang,  указывает, какой интерпретатор использовать
@@ -78,6 +87,7 @@ h hello include int main n printf return stdio void world
 ```
 
 ## Ответ:
+```
 #!/bin/bash
 
 file="$1"
@@ -86,6 +96,8 @@ identifiers=$(grep -o -E '\b[a-zA-Z]*\b' "$file" | sort -u)
 
 echo "Идентификаторы:"
 echo "$identifiers"
+```
+
 ---
 
 file="$1" сохраняет имя файла
@@ -106,6 +118,7 @@ identifiers=$(grep -o -E '\b[a-zA-Z]*\b' "$file" | sort -u) -  находит с
 
 ## Ответ:
 
+```
 #!/bin/bash
 
 file=$1
@@ -115,6 +128,7 @@ chmod 755 "./$file"
 sudo cp "$file" /usr/local/bin/
 
 echo "Файл '$file' скопирован в usr/local/bin/, права выданы"
+```
 ---
 
 chmod 755 "./$file"` - выдает права на выполнение и чтение для всех, но запись только владельцу
@@ -127,6 +141,7 @@ sudo cp "$file" /usr/local/bin/ - копирует файл в системну�
 
 ## Ответ:
 
+```
 #!/bin/bash
 
 for file in *.c *.js *.py; do
@@ -137,7 +152,11 @@ for file in *.c *.js *.py; do
         echo "Файл $file не начинается с комментария"
     fi
 done
+```
 ---
+
+for file in *.c *.js *.py; перебирает все файлы с расширениями c, js, py.
+line=$(head -n 1 "$file") читает первую строчку файла
 
 ## Задача 7
 
